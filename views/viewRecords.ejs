@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>운동 기록 조회</title>
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .home-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .empty-message {
+            text-align: center;
+            padding: 20px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <a href="/" class="home-link">← 메인으로 돌아가기</a>
+    <h1>운동 기록 목록</h1>
+    
+    <% if (records.length === 0) { %>
+        <p class="empty-message">등록된 운동 기록이 없습니다.</p>
+    <% } else { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>날짜</th>
+                    <th>운동 유형</th>
+                    <th>최대 BPM</th>
+                    <th>평균 BPM</th>
+                    <th>휴식 BPM</th>
+                    <th>운동 시간(시간)</th>
+                    <th>수분 섭취량(L)</th>
+                    <th>칼로리(kcal)</th>
+                    <th>운동 소감</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% records.forEach(record => { %>
+                <tr>
+                    <td><%= new Date(record.date).toLocaleDateString('ko-KR') %></td>
+                    <td><%= record.workout_type %></td>
+                    <td><%= record.max_bpm %></td>
+                    <td><%= record.avg_bpm %></td>
+                    <td><%= record.resting_bpm %></td>
+                    <td><%= record.duration %></td>
+                    <td><%= record.water.toFixed(1) %></td>
+                    <td><%= Math.round(record.calory) %></td>
+                    <td><%= record.description || '-' %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } %>
+</body>
+</html>

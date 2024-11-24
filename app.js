@@ -9,7 +9,7 @@ const { BigQuery } = require('@google-cloud/bigquery');
 require('dotenv').config();
 
 const bigquery = new BigQuery({
-    keyFilename: 'dbsoongsil-76e531c56dbf.json'
+    keyFilename: 'mykey.json'
 });
 
 const projectId = 'dbsoongsil';

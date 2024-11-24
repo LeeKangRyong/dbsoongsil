@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Tracker</title>
+</head>
+<body>
+  <h1>Calorie Tracker</h1>
+
+  <!-- 캘린더 -->
+  <div id="calendar">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% 
+          // 날짜별 데이터를 정리
+          const dataByDate = {};
+          calendarData.forEach(entry => {
+            dataByDate[entry.date] = entry;
+          });
+
+          // 현재 월의 날짜 생성
+          const today = new Date();
+          const year = today.getFullYear();
+          const month = today.getMonth(); // 현재 월 (0-11)
+          const firstDay = new Date(year, month, 1).getDay();
+          const lastDate = new Date(year, month + 1, 0).getDate();
+
+          // 캘린더 시작
+          let day = 1;
+          for (let week = 0; week < 6; week++) {
+            if (day > lastDate) break;
+        %>
+          <tr>
+            <% for (let i = 0; i < 7; i++) { %>
+              <td>
+                <% if (week === 0 && i < firstDay || day > lastDate) { %>
+                  <!-- 빈 칸 -->
+                <% } else { 
+                  const dateString = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                  const entry = dataByDate[dateString];
+                  day++;
+                %>
+                  <strong><%= dateString %></strong>
+                  <% if (entry) { %>
+                    <p>Predicted: <%= entry.predictedCalories %> kcal</p>
+                    <p>Burned: <%= entry.caloriesBurned %> kcal</p>
+                    <p>Water: <%= entry.waterIntake %> L</p>
+                  <% } %>
+                <% } %>
+              </td>
+            <% } %>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Page</title>
+  <style>
+    form { display: none; margin-top: 20px; }
+    form.visible { display: block; }
+  </style>
+</head>
+<body>
+  <h1>Welcome, <%= user.name %>!</h1>
+  <p><strong>Email:</strong> <%= user.email %></p>
+  <p><strong>Joined Date:</strong> <%= user.joinedDate %></p>
+
+  <!-- 수정 버튼 -->
+  <button id="edit-button">Edit Information</button>
+
+  <!-- 수정 폼 -->
+  <form id="edit-form" action="/mypage/edit" method="POST" class="edit-form">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= user.name %>" required>
+    <br>
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" value="<%= user.email %>" required>
+    <br>
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <!-- 메인 페이지로 돌아가는 버튼 -->
+  <button onc

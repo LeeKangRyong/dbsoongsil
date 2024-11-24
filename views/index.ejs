@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Tracker</title>
+</head>
+<body>
+  <h1>Calorie Tracker</h1>
+
+  <!-- 캘린더 -->
+  <div id="calendar">
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for (let week of calendarData) { %>
+          <tr>
+            <% for (let day of week) { %>
+              <td>
+                <strong><%= day.date %></strong>
+                <p><%= day.calories %> kcal</p>
+              </td>
+            <% } %>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- My Page 버튼 -->
+  <button onclick="location.href='/mypage'">Go to My Page</button>
+</body>
+</html>
+

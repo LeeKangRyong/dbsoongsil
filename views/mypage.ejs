@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>마이페이지</title>
+</head>
+<body>
+  <h1>마이페이지</h1>
+
+<!-- 사용자 정보 수정 -->
+<h2>사용자 정보 수정</h2>
+<form action="/mypage/edit" method="POST">
+  <label for="name">이름:</label>
+  <input type="text" name="name" value="<%= user.name %>" required><br>
+
+  <label for="age">나이:</label>
+  <input type="number" name="age" value="<%= user.age %>" required><br>
+
+  <label for="gender">성별:</label>
+  <select name="gender" required>
+    <option value="1" <%= user.gender === 1 ? 'selected' : '' %>>남성</option>
+    <option value="2" <%= user.gender === 2 ? 'selected' : '' %>>여성</option>
+  </select><br>
+
+  <!-- user_health 데이터 -->
+  <h3>건강 정보 수정</h3>
+  <label for="weight">몸무게 (kg):</label>
+  <input type="number" name="weight" step="0.1" value="<%= health.weight %>" required><br>
+
+  <label for="height">키 (cm):</label>
+  <input type="number" name="height" step="0.1" value="<%= health.height %>" required><br>
+
+  <label for="goal_weight">목표 몸무게 (kg):</label>
+  <input type="number" name="goal_weight" step="0.1" value="<%= health.goal_weight %>" required><br>
+
+  <label for="workout_freq">운동 빈도 (주간):</label>
+  <input type="number" name="workout_freq" value="<%= health.workout_freq %>" required><br>
+
+  <label for="experience_level">운동 경험:</label>
+  <input type="text" name="experience_level" value="<%= health.experience_level %>" required><br>
+
+  <label for="activity_level">활동 수준:</label>
+  <input type="text" name="activity_level" value="<%= health.activity_level %>" required><br>
+
+  <!-- BMI 표시 -->
+  <h3>BMI (체질량지수): <%= health.bmi %></h3>
+
+  <button type="submit">정보 수정</button>
+</form>
+
+  <!-- 인덱스 페이지로 이동 버튼 -->
+  <button onclick="location.href='/'">메인 페이지로 이동</button>
+
+  <!-- 로그아웃 버튼 -->
+  <button onclick="location.href='/auth/logout'">로그아웃</button>
+</body>
+</html>

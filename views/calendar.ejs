@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Calorie Tracker</title>
+</head>
+<body>
+  <h1>Calorie Tracker</h1>
+  <div id="calendar">
+    <!-- 캘린더를 그리는 부분 -->
+    <table>
+      <thead>
+        <tr>
+          <th>Sun</th>
+          <th>Mon</th>
+          <th>Tue</th>
+          <th>Wed</th>
+          <th>Thu</th>
+          <th>Fri</th>
+          <th>Sat</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- 날짜와 칼로리 데이터 출력 -->
+        <% for (let week of calendarData) { %>
+          <tr>
+            <% for (let day of week) { %>
+              <td>
+                <span><%= day.date %></span>
+                <p><%= day.calories %> kcal</p>
+              </td>
+            <% } %>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  <button onclick="location.href='/mypage'">Go to MyPage</button>
+</body>
+</html>
